@@ -81,6 +81,76 @@ const User = sequelize.define('user', {
 
 // Create helper functions to interact with the database.
 
+const defaultEvents = [
+    {
+        name: "CS 348 Project Demo",
+        date: "2024-04-29 01:51:00.000 +00:00",
+        location: "Online",
+        description: "Demo of the CS 348 project."
+    },
+    {
+        name: "CS 252 Final Exam",
+        date: "2024-04-30 01:51:00.000 +00:00",
+        location: "Online",
+        description: "Final exam for CS 252."
+    },
+    {
+        name: "MA 265 Final Exam",
+        date: "2024-05-01 01:51:00.000 +00:00",
+        location: "Online",
+        description: "Final exam for MA 265."
+    },
+    {
+        name: "Flight to MAA",
+        date: "2024-05-04 01:51:00.000 +00:00",
+        location: "KORD",
+        description: "Flight to Chennai."
+    },
+    {
+        name: "MA 265 Homework 32",
+        date: "2024-04-22 01:51:00.000 +00:00",
+        location: "Brightspace",
+        description: "Homework 32 for MA 265."
+    },
+    {
+        name: "MA 265 Homework 33",
+        date: "2024-04-22 01:51:00.000 +00:00",
+        location: "Brightspace",
+        description: "Homework 32 for MA 265."
+    },
+    {
+        name: "MA 265 Homework 34",
+        date: "2024-04-22 01:51:00.000 +00:00",
+        location: "Brightspace",
+        description: "Homework 32 for MA 265."
+    },
+    {
+        name: "BIOL 111 Lab Exam #3",
+        date: "2024-04-23 01:51:00.000 +00:00",
+        location: "Online",
+        description: "Lab exam #3 for BIOL 111."
+    },
+    {
+        name: "BIOL 111 Extra Credit",
+        date: "2024-04-25 01:51:00.000 +00:00",
+        location: "Online",
+        description: "Extra credit for BIOL 111."
+    },
+];
+
+const defaultUsers = [
+    {
+        name: "John Doe",
+        email: "john.doe@gmail.com",
+        password: "JohnnyBoy@1343"
+    },
+    {
+        name: "Jane Doe",
+        email: "jane12doe@gmail.com",
+        password: "JaneDoe@1234"
+    },
+];
+
 const dbHelper = {
     createEvent: async (name, date, location, description) => {
         try {
@@ -219,7 +289,29 @@ const dbHelper = {
             }
           });
         });
-      }
+    },
+    resetDB: () => {
+        try {
+            Event.destroy({
+                where: {},
+                truncate: true
+            });
+            User.destroy({
+                where: {},
+                truncate: true
+            });
+            defaultEvents.forEach(async (event) => {
+                await dbHelper.createEvent(event.name, event.date, event.location, event.description);
+            });
+            defaultUsers.forEach(async (user) => {
+                await dbHelper.createUser(user.name, user.email, user.password);
+            });
+            return true;
+        } catch (error) {
+            console.error(error);
+            return false;
+        }
+    }
 };
 
 // Create the tables if they don't exist.

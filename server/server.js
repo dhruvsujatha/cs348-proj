@@ -87,6 +87,16 @@ app.put('/api/event/:id', async (req, res) => {
 }  
 );
 
+app.get('/api/hard_reset_db', async (req, res) => {
+    const result = await dbHelper.resetDB();
+    if (result) {
+        res.json({ message: 'Database reset successfully!' });
+    } else {
+        res.json({ message: 'Database reset failed!' });
+    }
+}
+);
+
 
 app.listen(3001, () => { console.log("Server on port 3001") });
 
