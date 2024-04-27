@@ -1,0 +1,58 @@
+.landing-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  .landing-page-content {
+    text-align: center;
+    padding: 40px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .landing-page-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #333;
+  }
+  
+  .landing-page-description {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 32px;
+  }
+  
+  .page-links-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+  }
+  
+  .page-link {
+    background-color: #f5f5f5;
+    padding: 24px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .page-link:hover {
+    transform: translateY(-4px);
+  }
+  
+  .page-link-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .page-link-description {
+    font-size: 16px;
+    color: #666;
+    margin-top: 8px;
+  }
